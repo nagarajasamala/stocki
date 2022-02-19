@@ -11,11 +11,11 @@
 	<groupId>com.example</groupId>
 	<artifactId>stocki</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>stockify</name>
-	<description>Demo project for Spring Boot</description>
-
+	<name>stocki</name>
+	<description>Demo project for Spring Boot postgresql</description>
+	<packaging>jar</packaging>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>11</java.version> 
 	</properties>
 	<dependencies>
 		<dependency>
