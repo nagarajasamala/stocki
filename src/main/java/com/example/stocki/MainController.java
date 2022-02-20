@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
     @Autowired 
 	private UsersRepository usersRepository;
-   
+   @Autowired 
+	private ProductsRepository productsRepository;
 
 	@RequestMapping(path="/") // Map ONLY POST Requests
 	public  @ResponseBody String  Index(Model model) 
