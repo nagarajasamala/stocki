@@ -69,6 +69,25 @@ public class MainController {
 					return r;
 				}
 	}
+	@RequestMapping(path="/addProduct") // Map ONLY POST Requests
+	public  @ResponseBody ResBean  addProduct(@RequestParam String name ,Model model) 
+	{  			ResBean r=new ResBean();
+				Products p = productsRepository.findByName(name);
+				if(p!=null)
+				{
+					r.setResult("product exists");
+				}
+				if(p==null)
+				{
+				//Check user alreday existing
+				p = new Products();
+				p.setName(name);
+				p.setQty(0);
+				productsRepository.save(p);
+				r.setResult("product created");
+				}
+				return r;
+	}
 
 
 }
