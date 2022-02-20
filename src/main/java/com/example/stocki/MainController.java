@@ -1,5 +1,6 @@
 package com.example.stocki;
-
+import com.example.stocki.data.ProductsRepository;
+import com.example.stocki.model.Products;
 import com.example.stocki.data.UsersRepository;
 import com.example.stocki.model.ResBean;
 import com.example.stocki.model.Users;
