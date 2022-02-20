@@ -15,7 +15,7 @@ public class MainController {
 	private UsersRepository usersRepository;
    
 
-	@RequestMapping(path="/Index") // Map ONLY POST Requests
+	@RequestMapping(path="/") // Map ONLY POST Requests
 	public  @ResponseBody String  Index(Model model) 
 	{  	
 	
@@ -24,9 +24,14 @@ public class MainController {
 		
 	}
 	@RequestMapping(path="/UserSignUp") // Map ONLY POST Requests
-	public  @ResponseBody Users  UserSignUp(@RequestParam String name , @RequestParam String pd,Model model) 
-	{  	
+	public  @ResponseBody ResBean  UserSignUp(@RequestParam String name , @RequestParam String pd,Model model) 
+	{  			ResBean r=new ResBean();
 				Users u = usersRepository.findByName(name);
+				if(u!=null)
+				{
+
+					r.setResult("user exists");
+				}
 				if(u==null)
 				{
 				//Check user alreday existing
@@ -34,8 +39,9 @@ public class MainController {
 				u.setName(name);
 				u.setPd(pd);
 				usersRepository.save(u);
+				r.setResult("user created");
 				}
-				return u;
+				return r;
 	}
 	@RequestMapping(path="/UserLogin") // Map ONLY POST Requests
 	public  @ResponseBody ResBean  UserLogin(@RequestParam String name , @RequestParam String pd,Model model) 
@@ -43,19 +49,25 @@ public class MainController {
 				Users u = usersRepository.findByName(name);
 				ResBean r = new ResBean();
 				if(u==null)
+				{
 					r.setResult("fail");
-				else if(u.getName().equals("uadmin")&&u.getPd().equals(pd))
+					return r;
+				}
+				else if(u.getName().equals("rajusam")&&u.getPd().equals(pd))
 				{
 					r.setResult("ok");
+					return r;
 				}
 				else if(u.getName().equals(name)&&u.getPd().equals(pd))
 				{
 					r.setResult("*");
+					return r;
 				}
 				else
-					r.setResult("fail");
-		
-				return r;
+				{
+					r.setResult("incorrect password");
+					return r;
+				}
 	}
 
 
