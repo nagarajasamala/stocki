@@ -71,6 +71,20 @@ public class MainController {
 					return r;
 				}
 	}
+	@RequestMapping(path="/getUsers") // Map ONLY POST Requests
+	public  @ResponseBody Iterable<UserBean>  getUsers(@RequestParam String name ,Model model) 
+	{  		
+		ArrayList<UserBean> ulist = new ArrayList<>();
+		
+			   for(Users user:usersRepository.findAll())
+			   {
+				UserBean uBean=new UserBean(user);
+			
+				 ulist.add(uBean);
+			   }
+				
+				return ulist;
+	}
 	@RequestMapping(path="/addProduct") // Map ONLY POST Requests
 	public  @ResponseBody ResBean  addProduct(@RequestParam String name ,Model model) 
 	{  			ResBean r=new ResBean();
