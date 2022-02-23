@@ -3,6 +3,7 @@ import com.example.stocki.data.ProductsRepository;
 import com.example.stocki.model.Products;
 import com.example.stocki.data.UsersRepository;
 import com.example.stocki.model.ResBean;
+import com.example.stocki.model.UserBean;
 import com.example.stocki.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
