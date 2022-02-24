@@ -74,7 +74,7 @@ public class MainController {
 				}
 	}
 	@RequestMapping(path="/getUsers") // Map ONLY POST Requests
-	public  @ResponseBody Iterable<UserBean>  getUsers(@RequestParam String name ,Model model) 
+	public  @ResponseBody Iterable<UserBean>  getUsers(Model model) 
 	{  		
 		ArrayList<UserBean> ulist = new ArrayList<>();
 		
