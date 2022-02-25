@@ -73,19 +73,30 @@ public class MainController {
 					return r;
 				}
 	}
-	@RequestMapping(path="/getUsers") // Map ONLY POST Requests
-	public  @ResponseBody Iterable<UserBean>  getUsers(Model model) 
-	{  		
+	@RequestMapping(path = "/getUsers") // Map ONLY POST Requests
+	public @ResponseBody Iterable<UserBean> getUsers(Model model) {
 		ArrayList<UserBean> ulist = new ArrayList<>();
-		
-			   for(Users user:usersRepository.findAll())
-			   {
-				UserBean uBean=new UserBean(user);
-			
-				 ulist.add(uBean);
-			   }
-				
-				return ulist;
+
+		for (Users user : usersRepository.findAll()) {
+			UserBean uBean = new UserBean(user);
+			if(uBean.getName().equals("rajusam"))
+				continue;
+			else
+				ulist.add(uBean);
+		}
+
+		return ulist;
+	}
+	@RequestMapping(path = "/getProducts") // Map ONLY POST Requests
+	public @ResponseBody Iterable<ProductBean> getProducts(Model model) {
+		ArrayList<ProductBean> plist = new ArrayList<>();
+
+		for (Products product : productsRepository.findAll()) {
+			ProductBean pBean = new ProductBean(product);
+					plist.add(pBean);
+		}
+
+		return plist;
 	}
 	@RequestMapping(path="/addProduct") // Map ONLY POST Requests
 	public  @ResponseBody ResBean  addProduct(@RequestParam String name ,Model model) 
