@@ -1,8 +1,10 @@
 package com.example.stocki;
 import java.util.ArrayList;
-import com.example.stocki.data.ProductsRepository;
-import com.example.stocki.model.Products;
 import com.example.stocki.data.UsersRepository;
+import com.example.stocki.data.ProductsRepository;
+import com.example.stocki.data.OperationsRepository;
+import com.example.stocki.data.StockqtyRepository;
+import com.example.stocki.model.Products;
 import com.example.stocki.model.ResBean;
 import com.example.stocki.model.UserBean;
 import com.example.stocki.model.ProductBean;
@@ -19,6 +21,10 @@ public class MainController {
 	private UsersRepository usersRepository;
    @Autowired 
 	private ProductsRepository productsRepository;
+   @Autowired
+	private OperationsRepository operationsRepository;
+   @Autowired
+	private StockqtyRepository stockqtyRepository;
 
 	@RequestMapping(path="/") // Map ONLY POST Requests
 	public  @ResponseBody String  Index(Model model) 
