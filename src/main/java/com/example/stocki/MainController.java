@@ -124,6 +124,72 @@ public class MainController {
 				}
 				return r;
 	}
+	@RequestMapping(path = "/purchaseSubmit") // Map ONLY POST Requests
+	public @ResponseBody ResBean purchaseSubmit(@RequestParam String name,
+				                    @RequestParam String product,
+						    @RequestParam String quantity,
+						    @RequestParam String date,
+						    Model model) {
+			   ResBean r = new ResBean();
+			   Users u = usersRepository.findByName(name);
+			   Products p = productsRepository.findByName(product);
+			   Integer tq=Integer.parseInt(quantity);
+			   
+			   if(u == null) 
+				   r.setResult("invalid user");
+			   if(p == null)
+				   r.setResult("invalid product");
+			   else
+				{
+				   Operations	ob = new Operations(u,p,tq,date,"purchase");
+				   operationsRepository.save(ob);
+				   Stockqty sq= new Stockqty(u,p);	
+				   q=stockqtyRepository.findQtyByUsersAndProducts(u,p);
+							   
+				   sq.setQty(q+tq);
+				   stockqtyRepository.save(sq);
+				   r.setResult("product updated");
+			        }
+		 return r;
+	}
+
+	@RequestMapping(path = "/saleSubmit") // Map ONLY POST Requests
+	public @ResponseBody ResBean saleSubmit(@RequestParam String name,
+						@RequestParam String product,
+						@RequestParam String quantity,
+						@RequestParam String date,
+						Model model) {
+		ResBean r = new ResBean();
+	 	Users u = usersRepository.findByName(name);
+		Products p = productsRepository.findByName(product);
+		Integer tq=Integer.parseInt(quantity);
+
+		if(u == null) 
+			r.setResult("invalid user");
+		if(p == null)
+			r.setResult("invalid product");
+		else
+		{
+		
+			Stockqty sq= new Stockqty(u,p);	
+			q=stockqtyRepository.findQtyByUsersAndProducts(u,p);
+			if((q-tq)<0)
+			{
+			r.setResult("product no stock");
+			}
+			else
+			{
+			sq.setQty(q-tq);
+			stockqtyRepository.save(sq);
+			Operations	ob = new Operations(u,p,tq,date,"sale");
+			operationsRepository.save(ob);
+			r.setResult("product updated");
+			}
+		}
+		return r;
+	}
+
+	
 
 
 }
