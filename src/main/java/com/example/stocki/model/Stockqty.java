@@ -11,7 +11,8 @@ public class Stockqty   {
 	@SequenceGenerator(name="stq_generator", sequenceName = "stq_seq", allocationSize=1)
 	@Column(name = "id", updatable = false, nullable = false)
 	private Integer id;
-	private Integer qty;
+	@Column(name = "quantity")
+	private Integer qty=0;
 
 
     @ManyToOne(cascade=CascadeType.ALL)
