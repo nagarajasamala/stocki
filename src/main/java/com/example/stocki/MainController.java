@@ -25,6 +25,8 @@ public class MainController {
 	private OperationsRepository operationsRepository;
    @Autowired
 	private StockqtyRepository stockqtyRepository;
+	
+	Integer q=0;
 
 	@RequestMapping(path="/") // Map ONLY POST Requests
 	public  @ResponseBody String  Index(Model model) 
