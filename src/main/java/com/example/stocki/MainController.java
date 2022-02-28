@@ -5,6 +5,7 @@ import com.example.stocki.data.ProductsRepository;
 import com.example.stocki.data.OperationsRepository;
 import com.example.stocki.data.StockqtyRepository;
 import com.example.stocki.model.Products;
+import com.example.stocki.model.Operations;
 import com.example.stocki.model.Stockqty;
 import com.example.stocki.model.ResBean;
 import com.example.stocki.model.UserBean;
