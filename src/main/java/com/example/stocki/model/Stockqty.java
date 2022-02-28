@@ -26,6 +26,11 @@ public class Stockqty   {
     private Products products;
 	
 	public Stockqty() {}
+	public Stockqty(Users users,Products products)
+    	{
+    		this.users=users;
+    		this.products=products;
+   	}
 	public Stockqty(Users users,Products products,Integer qty)
     	{
     		this.users=users;
