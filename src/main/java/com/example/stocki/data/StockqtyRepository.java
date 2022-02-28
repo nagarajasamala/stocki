@@ -11,5 +11,6 @@ public interface StockqtyRepository extends CrudRepository<Stockqty, Integer> {
 
 	Iterable<Stockqty> findAllByUsers(Users user);
 	Iterable<Stockqty> findAll();
+	Integer findQtyByUsersAndProducts(Users u, Products p);
 
 }
